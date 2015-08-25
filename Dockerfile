@@ -21,7 +21,7 @@ RUN /bin/echo -e '\nCATALINA_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,address
 
 # add configuration Liferay file
 ADD /portal-bundle.properties /opt/liferay-portal-6.2-ce-ga4/portal-bundle.properties
-ADD /portal-bd.properties /opt/liferay-portal-6.2-ce-ga4/portal-postgres.properties
+ADD /portal-postgres.properties /opt/liferay-portal-6.2-ce-ga4/portal-postgres.properties
 
 # volumes
 VOLUME ["/var/liferay-home", "/opt/liferay-portal-6.2-ce-ga4/"]
