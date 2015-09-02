@@ -7,7 +7,6 @@ FROM snasello/docker-debian-java7:7u79
 
 MAINTAINER Ivano Masiero <info@ivanomasiero.com>
 
-
 ENV TERM=xterm
 
 # install liferay
@@ -26,13 +25,14 @@ RUN /bin/echo -e '\nCATALINA_OPTS="$CATALINA_OPTS -Dexternal-properties=portal-p
 ADD /portal-bundle.properties /opt/liferay-portal-6.2-ce-ga4/portal-bundle.properties
 ADD /portal-postgres.properties /opt/liferay-portal-6.2-ce-ga4/portal-postgres.properties
 
+# add Remote IDE Connector CE 2.0.1 portlet (for remote debugging)
+ADD ["/portlets/Remote IDE Connector CE.lpkg", "/opt/liferay-portal-6.2-ce-ga4/deploy/Remote IDE Connector CE.lpkg"]
+
 # volumes
 VOLUME ["/var/liferay-home", "/opt/liferay-portal-6.2-ce-ga4/"]
 
 # Ports
 EXPOSE 8080
-EXPOSE 8000
-EXPOSE 1898
 
 # Set JAVA_HOME
 ENV JAVA_HOME /opt/java
