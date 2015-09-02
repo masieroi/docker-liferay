@@ -14,8 +14,6 @@ RUN curl -O -s -k -L -C - http://downloads.sourceforge.net/project/lportal/Lifer
 	&& unzip liferay-portal-tomcat-6.2-ce-ga4-20150416163831865.zip -d /opt \
 	&& rm liferay-portal-tomcat-6.2-ce-ga4-20150416163831865.zip
 
-# config (remote debug enabled)
-
 # install nano as builtin editor
 RUN apt-get update && apt-get install -y nano
 
@@ -25,11 +23,11 @@ RUN /bin/echo -e '\nCATALINA_OPTS="$CATALINA_OPTS -Dexternal-properties=portal-p
 ADD /portal-bundle.properties /opt/liferay-portal-6.2-ce-ga4/portal-bundle.properties
 ADD /portal-postgres.properties /opt/liferay-portal-6.2-ce-ga4/portal-postgres.properties
 
-# add Remote IDE Connector CE 2.0.1 portlet (for remote debugging)
-ADD ["/portlets/Remote IDE Connector CE.lpkg", "/opt/liferay-portal-6.2-ce-ga4/deploy/Remote IDE Connector CE.lpkg"]
-
 # volumes
 VOLUME ["/var/liferay-home", "/opt/liferay-portal-6.2-ce-ga4/"]
+
+# add Remote IDE Connector CE 2.0.1 portlet (for remote debugging)
+ADD ["/portlets/server-manager-web", "/opt/liferay-portal-6.2-ce-ga4/tomcat-7.0.42/webapps/server-manager-web"]
 
 # Ports
 EXPOSE 8080
