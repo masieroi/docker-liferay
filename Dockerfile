@@ -7,8 +7,8 @@ FROM snasello/docker-debian-java7:7u79
 
 MAINTAINER Ivano Masiero <info@ivanomasiero.com>
 
-ENV JAVA_XMX 2048
-ENV JAVA_MAX_PERM_SIZE 512
+
+ENV TERM=xterm
 
 # install liferay
 RUN curl -O -s -k -L -C - http://downloads.sourceforge.net/project/lportal/Liferay%20Portal/6.2.3%20GA4/liferay-portal-tomcat-6.2-ce-ga4-20150416163831865.zip \
@@ -17,7 +17,10 @@ RUN curl -O -s -k -L -C - http://downloads.sourceforge.net/project/lportal/Lifer
 
 # config (remote debug enabled)
 
-RUN /bin/echo -e '\nCATALINA_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n -Dcom.sun.management.jmxremote.port=1898 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false $CATALINA_OPTS -Xmx${JAVA_XMX}m -XX:MaxPermSize=${JAVA_MAX_PERM_SIZE}m -Dexternal-properties=portal-postgres.properties"' >> /opt/liferay-portal-6.2-ce-ga4/tomcat-7.0.42/bin/setenv.sh
+# install nano as builtin editor
+RUN apt-get update && apt-get install -y nano
+
+RUN /bin/echo -e '\nCATALINA_OPTS="$CATALINA_OPTS -Dexternal-properties=portal-postgres.properties"' >> /opt/liferay-portal-6.2-ce-ga4/tomcat-7.0.42/bin/setenv.sh
 
 # add configuration Liferay file
 ADD /portal-bundle.properties /opt/liferay-portal-6.2-ce-ga4/portal-bundle.properties
