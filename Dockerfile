@@ -3,7 +3,7 @@
 # VERSION 0.0.1
 #
 
-FROM snasello/docker-debian-java7:7u79
+FROM masieroi/docker-debian-java7
 
 MAINTAINER Ivano Masiero <info@ivanomasiero.com>
 
