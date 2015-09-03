@@ -34,7 +34,6 @@ ADD ["/portlets/server-manager-web", "/opt/liferay-portal-6.2-ce-ga4/tomcat-7.0.
 
 # Ports
 EXPOSE 8080
-EXPOSE 22
 
 # Set JAVA_HOME
 ENV JAVA_HOME /opt/java
