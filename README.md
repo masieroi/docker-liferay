@@ -26,7 +26,7 @@ docker run -p 5432:5432 -e DB_NAME=lportal -e DB_USER=lportal -e DB_PASS=lportal
 
 Then start the Liferay coninter with a link to the database
 ```
-docker run -d -p 8080:8080 -p 8000:8000 -p 1898:1898 --name protones-liferay --link protones-postgres:db_lep -v /Users/<path>:/var/liferay-home
+docker run -d -p 8080:8080 -p 8000:8000 -p 1898:1898 --name protones-liferay --link protones-postgres:dblep -v /Users/<path>:/var/liferay-home
 ```
 
 We expose the port 8080 for Tomcat, 8000 and 1898 to enable the remote debug in Eclipse or IntelliJ (in this case we have to use the external host address and port 8000 to establish a proper connection).
